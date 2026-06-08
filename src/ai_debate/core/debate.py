@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 
@@ -7,7 +8,7 @@ from ..agents.ai_teacher import AITeacherAgent
 from ..agents.human_teacher import HumanTeacherAgent
 from ..agents.judge import JudgeAgent
 from ..core.gatekeeper import RateLimiter
-from ..models.schemas import AgentTurn, DebateTranscript
+from ..models.schemas import AgentTurn, DebateTranscript, JudgeScore
 from ..utils.helpers import format_round_header
 
 logger = logging.getLogger("ai_debate")
@@ -35,6 +36,8 @@ class DebateEngine:
         from ..config import settings
 
         transcript = DebateTranscript(topic=TOPIC)
+        Path("logs").mkdir(exist_ok=True)
+        Path("logs/debate_transcript.json").write_text("[]", encoding="utf-8")
         print(f"\n{'=' * 60}\nDEBATE TOPIC:\n{TOPIC}\n{'=' * 60}")
 
         for round_num in range(1, settings.max_rounds + 1):
@@ -44,9 +47,10 @@ class DebateEngine:
 
             score = self.judge.score_round(ai_turn, human_turn)
             transcript.scores.append(score)
+            self._log_round(round_num, ai_turn, human_turn, score)
             print(
-                f"  Scores — AI: {score.ai_teacher_score:3d} | Human: {score.human_teacher_score:3d}\n"
-                f"  Judge: {score.reasoning}"
+                f"  Scores        — AI: {score.ai_teacher_score:3d} | Human: {score.human_teacher_score:3d}\n"
+                f"  Round Summary — {score.reasoning}"
             )
 
         verdict = self.judge.declare_winner(transcript)
@@ -74,9 +78,35 @@ class DebateEngine:
         print(f"  Human : {human_preview}...")
         return ai_turn, human_turn
 
+    def _log_round(
+        self, round_num: int, ai_turn: AgentTurn, human_turn: AgentTurn, score: JudgeScore
+    ) -> None:
+        logs_dir = Path("logs")
+        logs_dir.mkdir(exist_ok=True)
+        log_file = logs_dir / "debate_transcript.json"
+        existing: list[dict] = []
+        if log_file.exists():
+            try:
+                data = json.loads(log_file.read_text(encoding="utf-8"))
+                existing = data if isinstance(data, list) else []
+            except Exception:
+                existing = []
+        existing.append({
+            "round": round_num,
+            "ai_turn": ai_turn.model_dump(),
+            "human_turn": human_turn.model_dump(),
+            "judge_score": score.model_dump(),
+        })
+        log_file.write_text(json.dumps(existing, indent=2, ensure_ascii=False), encoding="utf-8")
+
     def _export_transcript(self, transcript: DebateTranscript) -> None:
         output_dir = Path("output")
         output_dir.mkdir(exist_ok=True)
         out_file = output_dir / "transcript.json"
         out_file.write_text(transcript.model_dump_json(indent=2), encoding="utf-8")
-        print(f"Transcript exported → {out_file.resolve()}")
+        logs_dir = Path("logs")
+        logs_dir.mkdir(exist_ok=True)
+        full_log = logs_dir / "debate_transcript.json"
+        full_log.write_text(transcript.model_dump_json(indent=2), encoding="utf-8")
+        print(f"Transcript → {out_file.resolve()}")
+        print(f"Full log   → {full_log.resolve()}")
