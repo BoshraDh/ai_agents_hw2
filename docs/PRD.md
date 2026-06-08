@@ -1,7 +1,7 @@
 # Product Requirements Document
 # AI vs. Human Teachers — 3-Agent Debate System
 
-**Version:** 1.2.0  
+**Version:** 1.3.0  
 **Date:** 2026-06-08  
 **Author:** AI Debate System Team  
 **Status:** Draft
@@ -182,3 +182,16 @@ The Judge must produce a non-tie verdict using these totals.
 - Judge produces a valid, reasoned, non-tie final verdict
 - Word counts enforced on every response
 - Full debate transcript exported as structured JSON
+
+---
+
+## 10. Code Quality Requirements (v1.3)
+
+| Requirement | Implementation |
+|-------------|---------------|
+| Schema validation | `@model_validator` enforces `argument != None` for all debater turns |
+| DRY principle | Single `count_words()` in `utils/helpers.py`; agents delegate via `BaseDebateAgent._count_words()` |
+| Rate limit coverage | `gatekeeper.acquire()` called inside every agent before each `client.ask()` — 100% API call coverage |
+| Rate limit config | `config/rate_limits.json` — separate config file; `config.py` loads RPM from it at startup |
+| Docstrings | Google-style docstrings on all public methods and classes |
+| Web search | Every agent system prompt explicitly instructs use of web search for evidence and statistics |
