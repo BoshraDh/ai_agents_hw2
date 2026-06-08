@@ -60,6 +60,15 @@ class JudgeAgent:
         return f"  [Judge] Round {round_num} -- {label}, please present your argument."
 
     def interim_feedback(self, agent_name: str, argument: str) -> str:
+        """Provide a one-sentence insight after an agent's argument via CLI.
+
+        Args:
+            agent_name: Name of the agent who just argued.
+            argument: The argument text to react to.
+
+        Returns:
+            One-sentence insight string (max 25 words).
+        """
         label = "AI Teacher" if "AI" in agent_name else "Human Teacher"
         self.gatekeeper.acquire()
         raw = self.client.ask(
@@ -73,6 +82,15 @@ class JudgeAgent:
         return f"  [Judge] {feedback} -- Now, {to_label}, your response."
 
     def score_round(self, ai_turn: AgentTurn, human_turn: AgentTurn) -> JudgeScore:
+        """Score both agents for a completed round using the 5-criterion rubric.
+
+        Args:
+            ai_turn: The AgentTurn produced by AI_Teacher_Agent.
+            human_turn: The AgentTurn produced by Human_Teacher_Agent.
+
+        Returns:
+            JudgeScore with per-agent scores (0-100) and reasoning string.
+        """
         self.gatekeeper.acquire()
         user = (
             f"Round {ai_turn.round}\n"
@@ -90,6 +108,14 @@ class JudgeAgent:
             return JudgeScore(round=ai_turn.round, ai_teacher_score=ai_pts, human_teacher_score=human_pts, reasoning="Parse error")
 
     def declare_winner(self, transcript: DebateTranscript) -> str:
+        """Declare the debate winner based on cumulative scores; no ties permitted.
+
+        Args:
+            transcript: Full DebateTranscript containing all round scores.
+
+        Returns:
+            Final verdict string naming the winner with score differential.
+        """
         ai_total = sum(s.ai_teacher_score for s in transcript.scores)
         human_total = sum(s.human_teacher_score for s in transcript.scores)
         breakdown = "\n".join(

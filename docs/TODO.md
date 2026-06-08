@@ -155,4 +155,18 @@
 - [x] Update PRD.md — Judge responsibilities, word count table, success criteria
 - [x] Update PLAN.md — new section 6 (Active Judge Moderation), updated turn-loop diagram, updated JudgeAgent class signature
 - [x] Verify 29 tests pass, ruff clean, mypy clean
-- [ ] Test live terminal run — confirm intro/insight/transition lines print correctly for all 10 rounds
+- [x] Test live terminal run — confirmed intro/insight/transition lines printed correctly for all 10 rounds
+
+---
+
+## 14. v1.3 Code Quality Fixes (Reviewer Feedback)
+
+- [x] Fix 1 — `models/schemas.py`: add `@model_validator` to enforce `argument is not None` for debater role
+- [x] Fix 2 — `utils/helpers.py` + `base_agent.py`: remove duplicate `count_words`; `BaseDebateAgent._count_words()` now delegates to `helpers.count_words()`
+- [x] Fix 3 — `core/gatekeeper.py`: move `acquire()` fully inside agents; `BaseDebateAgent._acquire()` helper added; `gatekeeper` injected optionally into `AITeacherAgent` and `HumanTeacherAgent`; `debate.py` no longer calls `acquire()` directly
+- [x] Fix 4 — `config/rate_limits.json`: created separate rate-limit config file; `config.py` loads RPM from it at startup
+- [x] Fix 5 — Docstrings: Google-style docstrings added to `argue()` (both agents), `score_round()`, `declare_winner()`, `interim_feedback()`, `run()`, `_execute_round()`, `_parse_response()`
+- [x] Fix 6 — Web search: explicit web-search instruction added to `BaseDebateAgent._build_system_prompt()`; all agent system prompts now instruct Claude to use web search for evidence
+- [x] Update `test_schemas.py`: split `test_null_argument_allowed` into `test_null_argument_raises_for_debater` and `test_null_argument_allowed_for_judge`
+- [x] Fix `_parse_response` fallback: use `argument="[FORFEITED]"` instead of `None` to comply with new validator
+- [x] All 30 tests pass, ruff clean, mypy clean

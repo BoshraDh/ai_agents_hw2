@@ -1,4 +1,19 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+_RATE_LIMITS_FILE = Path(__file__).parent.parent.parent / "config" / "rate_limits.json"
+
+
+def _load_default_rpm() -> int:
+    try:
+        data = json.loads(_RATE_LIMITS_FILE.read_text(encoding="utf-8"))
+        return int(data["rate_limits"]["services"]["default"]["requests_per_minute"])
+    except Exception:
+        return 30
 
 
 class Settings(BaseSettings):
@@ -7,7 +22,7 @@ class Settings(BaseSettings):
     max_rounds: int = 10
     min_words: int = 80
     max_words: int = 120
-    rate_limit_rpm: int = 30  # higher default for local CLI mode
+    rate_limit_rpm: int = _load_default_rpm()
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -16,4 +31,4 @@ class Settings(BaseSettings):
     )
 
 
-settings = Settings()
+settings = Settings()  # type: ignore[call-arg]

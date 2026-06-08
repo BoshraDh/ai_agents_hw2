@@ -201,10 +201,10 @@ Word-count range enforced via `@field_validator`; one automatic retry allowed.
 | `main.py`               | ≤ 60    |
 | `config.py`             | ≤ 50    |
 | `models/schemas.py`     | ≤ 100   |
-| `agents/base_agent.py`  | ≤ 60    |
+| `agents/base_agent.py`  | ≤ 80    |
 | `agents/ai_teacher.py`  | ≤ 80    |
 | `agents/human_teacher.py` | ≤ 80  |
 | `agents/judge.py`       | ≤ 150   |
-| `core/debate.py`        | ≤ 120   |
+| `core/debate.py`        | ≤ 150   |
 | `core/gatekeeper.py`    | ≤ 80    |
 | `utils/helpers.py`      | ≤ 60    |

@@ -21,8 +21,8 @@ def main() -> None:
     try:
         client = CLIClient()
         gatekeeper = RateLimiter(rpm=settings.rate_limit_rpm)
-        ai_agent = AITeacherAgent(client=client)
-        human_agent = HumanTeacherAgent(client=client)
+        ai_agent = AITeacherAgent(client=client, gatekeeper=gatekeeper)
+        human_agent = HumanTeacherAgent(client=client, gatekeeper=gatekeeper)
         judge = JudgeAgent(client=client, gatekeeper=gatekeeper)
         engine = DebateEngine(
             judge=judge,

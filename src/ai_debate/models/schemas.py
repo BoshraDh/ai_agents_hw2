@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, model_validator
 
 
 class AgentTurn(BaseModel):
@@ -28,6 +28,12 @@ class AgentTurn(BaseModel):
         if v < 0:
             raise ValueError("word_count cannot be negative")
         return v
+
+    @model_validator(mode="after")
+    def check_argument_for_debater(self) -> AgentTurn:
+        if self.role == "debater" and self.argument is None:
+            raise ValueError("argument is required for debater role")
+        return self
 
 
 class JudgeScore(BaseModel):

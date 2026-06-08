@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 
 from ..core.cli_client import CLIClient
+from ..core.gatekeeper import RateLimiter
 from ..models.schemas import AgentTurn
 from ..utils.helpers import truncate_context
 from .base_agent import BaseDebateAgent
@@ -32,18 +33,29 @@ _JSON_SCHEMA = (
 
 
 class HumanTeacherAgent(BaseDebateAgent):
-    def __init__(self, client: CLIClient) -> None:
+    def __init__(self, client: CLIClient, gatekeeper: RateLimiter | None = None) -> None:
         super().__init__(
             name="Human_Teacher_Agent",
             position="Human educators are irreplaceable — empathy, mentorship, and soul",
             client=client,
+            gatekeeper=gatekeeper,
         )
 
     def argue(self, round_num: int, context: list[AgentTurn]) -> AgentTurn:
+        """Generate a pro-human argument for the given round.
+
+        Args:
+            round_num: Current round number (1-10).
+            context: Previous turns used as debate history.
+
+        Returns:
+            AgentTurn with the argument; format_valid=False on forfeit.
+        """
         system = self._build_system_prompt() + _THEMES + _CONSTRAINTS + f"\nRespond ONLY with JSON:\n{_JSON_SCHEMA}"
         user = self._build_user_message(round_num, context)
 
         for attempt in range(2):
+            self._acquire()
             raw = self.client.ask(system=system, user=user)
             turn = self._parse_response(raw, round_num)
             if turn.format_valid and turn.argument and self._validate_word_count(turn.argument):

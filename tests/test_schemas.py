@@ -50,8 +50,13 @@ def test_negative_word_count():
         _turn(word_count=-1)
 
 
-def test_null_argument_allowed():
-    t = _turn(argument=None, word_count=0, format_valid=False)
+def test_null_argument_raises_for_debater():
+    with pytest.raises(ValidationError):
+        _turn(argument=None, word_count=0, format_valid=False)
+
+
+def test_null_argument_allowed_for_judge():
+    t = _turn(agent="Judge", role="judge", argument=None, word_count=0, format_valid=True)
     assert t.argument is None
 
 

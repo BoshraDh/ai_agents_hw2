@@ -34,6 +34,11 @@ class DebateEngine:
         self.gatekeeper = gatekeeper
 
     def run(self) -> DebateTranscript:
+        """Run all 10 debate rounds and return the final transcript.
+
+        Returns:
+            DebateTranscript with all turns, scores, and winner verdict.
+        """
         from ..config import settings
 
         transcript = DebateTranscript(topic=TOPIC)
@@ -58,8 +63,16 @@ class DebateEngine:
         return transcript
 
     def _execute_round(self, round_num: int, context: list[AgentTurn]) -> tuple[AgentTurn, AgentTurn]:
+        """Execute one round: judge intro, each agent argues, judge insight after each.
+
+        Args:
+            round_num: Current round number (1-10).
+            context: All previous AgentTurns for debate history.
+
+        Returns:
+            Tuple of (ai_turn, human_turn) for this round.
+        """
         print(self.judge.introduce_agent("AI_Teacher_Agent", round_num))
-        self.gatekeeper.acquire()
         ai_turn = self.ai_agent.argue(round_num, context)
         if not self.judge.validate_response(ai_turn):
             logger.warning(f"Round {round_num}: AI_Teacher_Agent response forfeited")
@@ -68,7 +81,6 @@ class DebateEngine:
         ai_fb = self.judge.interim_feedback("AI_Teacher_Agent", ai_turn.argument or "[FORFEITED]")
         print(self.judge.transition_to("AI_Teacher_Agent", "Human_Teacher_Agent", ai_fb))
 
-        self.gatekeeper.acquire()
         human_turn = self.human_agent.argue(round_num, context)
         if not self.judge.validate_response(human_turn):
             logger.warning(f"Round {round_num}: Human_Teacher_Agent response forfeited")
