@@ -26,6 +26,11 @@ Respond ONLY with JSON (no markdown):
  "final_verdict":"<100-200 words: name winner, cite score differential, reference 2 deciding rounds>",
  "word_count":<n>,"format_valid":true}"""
 
+_INTERIM_SYSTEM = (
+    "You are the debate moderator. After an agent's argument, provide one concise insight "
+    "sentence (max 25 words). Be objective and specific to the argument. Plain text only."
+)
+
 
 class JudgeAgent:
     _TURN_ORDER = ["AI_Teacher_Agent", "Human_Teacher_Agent"]
@@ -49,6 +54,23 @@ class JudgeAgent:
                 logger.warning(f"{turn.agent} round {turn.round}: word count {wc} out of range")
                 return False
         return True
+
+    def introduce_agent(self, agent_name: str, round_num: int) -> str:
+        label = "AI Teacher" if "AI" in agent_name else "Human Teacher"
+        return f"  [Judge] Round {round_num} -- {label}, please present your argument."
+
+    def interim_feedback(self, agent_name: str, argument: str) -> str:
+        label = "AI Teacher" if "AI" in agent_name else "Human Teacher"
+        self.gatekeeper.acquire()
+        raw = self.client.ask(
+            system=_INTERIM_SYSTEM,
+            user=f'{label} argued: "{argument}"\nYour one-sentence insight:',
+        )
+        return raw.strip() or "Argument noted."
+
+    def transition_to(self, from_agent: str, to_agent: str, feedback: str) -> str:
+        to_label = "AI Teacher" if "AI" in to_agent else "Human Teacher"
+        return f"  [Judge] {feedback} -- Now, {to_label}, your response."
 
     def score_round(self, ai_turn: AgentTurn, human_turn: AgentTurn) -> JudgeScore:
         self.gatekeeper.acquire()

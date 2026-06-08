@@ -1,7 +1,7 @@
 # Technical Architecture & Class Structure
 # AI vs. Human Teachers — 3-Agent Debate System
 
-**Version:** 1.0.0 | **Status:** Approved
+**Version:** 1.2.0 | **Status:** Approved
 
 ---
 
@@ -91,9 +91,12 @@ class BaseDebateAgent(ABC):
 ### `agents/judge.py`
 ```python
 class JudgeAgent:
-    def __init__(self, client: Anthropic, gatekeeper: RateLimiter): ...
-    def next_turn(self, round_num: int) -> str: ...          # alternating controller
+    def __init__(self, client: CLIClient, gatekeeper: RateLimiter): ...
+    def next_turn(self, round_num: int) -> str: ...              # alternating controller
     def validate_response(self, turn: AgentTurn) -> bool: ...
+    def introduce_agent(self, agent_name: str, round_num: int) -> str: ...  # template intro
+    def interim_feedback(self, agent_name: str, argument: str) -> str: ...  # CLI insight call
+    def transition_to(self, from_agent: str, to_agent: str, feedback: str) -> str: ...
     def score_round(self, ai: AgentTurn, human: AgentTurn) -> JudgeScore: ...
     def declare_winner(self, transcript: DebateTranscript) -> str: ...
 ```
@@ -123,15 +126,19 @@ class DebateEngine:
 ```
 DebateEngine.run()
  └─ for round in 1..10:
-      Judge.next_turn(round) → "AI_Teacher_Agent"
+      Judge.introduce_agent("AI_Teacher_Agent", round)   → print "[Judge] Round N -- AI Teacher..."
         Gatekeeper.acquire()
           AI_Teacher_Agent.argue(round, context) → AgentTurn
             Judge.validate_response() → True | forfeit
-      Judge.next_turn(round) → "Human_Teacher_Agent"
+          Judge.interim_feedback("AI_Teacher_Agent", argument)  → CLI call → insight string
+          Judge.transition_to("AI_Teacher_Agent", "Human_Teacher_Agent", insight) → print
         Gatekeeper.acquire()
           Human_Teacher_Agent.argue(round, context) → AgentTurn
             Judge.validate_response() → True | forfeit
-      Judge.score_round(ai_turn, human_turn) → JudgeScore
+          Judge.interim_feedback("Human_Teacher_Agent", argument) → CLI call → insight string
+          print "[Judge] {insight}"
+      Judge.score_round(ai_turn, human_turn) → JudgeScore  [CLI call]
+      print "[Scores] AI: N | Human: N"
  └─ Judge.declare_winner(transcript) → winner_name  [no ties]
 ```
 
@@ -142,6 +149,31 @@ DebateEngine.run()
 All API responses are parsed via `AgentTurn.model_validate(json.loads(raw))`.  
 `ValidationError` → round forfeited, that agent scores 0 for the round.  
 Word-count range enforced via `@field_validator`; one automatic retry allowed.
+
+---
+
+## 6. Active Judge Moderation (v1.2)
+
+### 6.1 Judge Introduction & Transition
+- `introduce_agent(agent_name, round_num) -> str` — template string (no CLI call), printed
+  before each agent speaks: *"[Judge] Round N -- [label], please present your argument."*
+- `transition_to(from_agent, to_agent, feedback) -> str` — template string embedding the
+  interim feedback: *"[Judge] {insight} -- Now, [next label], your response."*
+
+### 6.2 Judge's Interim Feedback (per agent)
+- `interim_feedback(agent_name, argument) -> str` — single CLI call after each agent argument
+- System prompt `_INTERIM_SYSTEM`: *"one concise insight sentence, max 25 words, plain text"*
+- Replaces the old "Round Summary" line (which was one call per round after both agents)
+
+### 6.3 Display Flow (per round)
+```
+[Judge] Round N -- AI Teacher, please present your argument.
+  AI   : [argument text, wrapped at 100 chars]
+  [Judge] [AI insight] -- Now, Human Teacher, your response.
+  Human: [argument text, wrapped at 100 chars]
+  [Judge] [Human insight]
+  [Scores] AI: NN | Human: NN
+```
 
 ---
 

@@ -142,3 +142,17 @@
 - [x] Modify Agent System Prompts — reduce `max_words` to 120, add explicit Judge penalty warning, add density-over-length instruction to `AI_Teacher_Agent` and `Human_Teacher_Agent`
 - [x] Refactor Controller Logging — replace `[:100]` truncation in `core/debate.py` with `textwrap.fill()` (width=100) via new `_print_turn()` helper so no argument text is cut off
 - [ ] Test Terminal Display — run `uv run debate` from a standalone terminal and confirm all 10 rounds print full wrapped text with no truncation or Unicode errors
+
+---
+
+## 13. v1.2 Active Judge Moderation
+
+- [x] Add `introduce_agent(agent_name, round_num) -> str` to `JudgeAgent` — template intro printed before each agent speaks
+- [x] Add `interim_feedback(agent_name, argument) -> str` to `JudgeAgent` — one CLI call after each individual agent argument (replaces end-of-round summary)
+- [x] Add `transition_to(from_agent, to_agent, feedback) -> str` to `JudgeAgent` — template transition embedding the interim insight
+- [x] Update `_execute_round()` in `debate.py` — print judge intro, argue, print turn, call interim_feedback, print transition for AI; repeat for Human; print judge insight after Human
+- [x] Remove "Round Summary" print from `run()` — replaced by two per-agent Judge insights per round
+- [x] Update PRD.md — Judge responsibilities, word count table, success criteria
+- [x] Update PLAN.md — new section 6 (Active Judge Moderation), updated turn-loop diagram, updated JudgeAgent class signature
+- [x] Verify 29 tests pass, ruff clean, mypy clean
+- [ ] Test live terminal run — confirm intro/insight/transition lines print correctly for all 10 rounds

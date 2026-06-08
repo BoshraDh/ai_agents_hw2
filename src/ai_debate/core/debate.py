@@ -49,10 +49,7 @@ class DebateEngine:
             score = self.judge.score_round(ai_turn, human_turn)
             transcript.scores.append(score)
             self._log_round(round_num, ai_turn, human_turn, score)
-            print(
-                f"  Scores        — AI: {score.ai_teacher_score:3d} | Human: {score.human_teacher_score:3d}\n"
-                f"  Round Summary — {score.reasoning}"
-            )
+            print(f"  [Scores] AI: {score.ai_teacher_score:3d} | Human: {score.human_teacher_score:3d}")
 
         verdict = self.judge.declare_winner(transcript)
         transcript.winner = verdict
@@ -61,20 +58,25 @@ class DebateEngine:
         return transcript
 
     def _execute_round(self, round_num: int, context: list[AgentTurn]) -> tuple[AgentTurn, AgentTurn]:
+        print(self.judge.introduce_agent("AI_Teacher_Agent", round_num))
         self.gatekeeper.acquire()
         ai_turn = self.ai_agent.argue(round_num, context)
         if not self.judge.validate_response(ai_turn):
             logger.warning(f"Round {round_num}: AI_Teacher_Agent response forfeited")
             ai_turn.format_valid = False
+        self._print_turn("AI   ", ai_turn.argument)
+        ai_fb = self.judge.interim_feedback("AI_Teacher_Agent", ai_turn.argument or "[FORFEITED]")
+        print(self.judge.transition_to("AI_Teacher_Agent", "Human_Teacher_Agent", ai_fb))
 
         self.gatekeeper.acquire()
         human_turn = self.human_agent.argue(round_num, context)
         if not self.judge.validate_response(human_turn):
             logger.warning(f"Round {round_num}: Human_Teacher_Agent response forfeited")
             human_turn.format_valid = False
-
-        self._print_turn("AI   ", ai_turn.argument)
         self._print_turn("Human", human_turn.argument)
+        human_fb = self.judge.interim_feedback("Human_Teacher_Agent", human_turn.argument or "[FORFEITED]")
+        print(f"  [Judge] {human_fb}")
+
         return ai_turn, human_turn
 
     def _print_turn(self, label: str, text: str | None) -> None:

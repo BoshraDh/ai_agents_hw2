@@ -1,8 +1,8 @@
 # Product Requirements Document
 # AI vs. Human Teachers — 3-Agent Debate System
 
-**Version:** 1.0.0  
-**Date:** 2026-06-07  
+**Version:** 1.2.0  
+**Date:** 2026-06-08  
 **Author:** AI Debate System Team  
 **Status:** Draft
 
@@ -36,14 +36,17 @@ the topic:
 
 ### 3.1 Judge Agent — "The Father"
 
-- **Role:** Orchestrator and final arbiter
+- **Role:** Active moderator, orchestrator, and final arbiter
 - **Responsibilities:**
+  - Introduces each agent before their turn: *"Round N — [Agent], please present your argument."*
+  - Provides a one-sentence **Judge's Insight** after each individual agent speaks
+  - Transitions between agents: *"[Insight] -- Now, [next Agent], your response."*
   - Controls turn order and enforces strict round limits
   - Validates every response for JSON schema compliance
-  - Scores each argument on: reasoning depth, evidence quality, format adherence
+  - Scores each round (both agents) on 5 criteria immediately after both speak
   - Declares a single winner at the end — no ties permitted
 - **Decision Basis:** Cumulative score across all 10 rounds per agent
-- **Behavior:** Objective, neutral, structured; never intervenes in content
+- **Behavior:** Objective, neutral, structured; actively manages debate flow
 
 ### 3.2 AI_Teacher_Agent
 
@@ -88,7 +91,7 @@ the topic:
 |------------------------------|-----------|-----------|
 | AI_Teacher_Agent argument    | 80        | **120**   |
 | Human_Teacher_Agent argument | 80        | **120**   |
-| Judge round summary          | 30        | 60        |
+| Judge's Insight (per agent)  | 1 sentence| 25 words  |
 | Judge final verdict          | 100       | 200       |
 
 Responses outside these bounds are flagged and penalized in scoring.  
@@ -173,6 +176,9 @@ The Judge must produce a non-tie verdict using these totals.
 ## 9. Success Criteria
 
 - All 20 rounds complete without schema errors
-- Judge produces a valid, reasoned, non-tie verdict
+- Judge introduces each agent before their turn in every round
+- Judge provides a one-sentence Insight after every individual agent argument
+- Judge transitions explicitly from one agent to the next
+- Judge produces a valid, reasoned, non-tie final verdict
 - Word counts enforced on every response
 - Full debate transcript exported as structured JSON
