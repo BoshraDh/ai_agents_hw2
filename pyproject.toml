@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-debate"
+version = "1.0.0"
+description = "3-Agent AI Debate System: AI vs. Human Teachers"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.40.0",
+    "openai>=2.41.0",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "python-dotenv>=1.2.2",
+]
+
+[project.scripts]
+debate = "ai_debate.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_debate"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.9",
+    "mypy>=1.10",
+]
+
+[tool.ruff]
+src = ["src"]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+mypy_path = "src"
+python_version = "3.12"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,115 @@
+from __future__ import annotations
+
+import json
+import logging
+
+from ..core.cli_client import CLIClient
+from ..core.gatekeeper import RateLimiter
+from ..models.schemas import AgentTurn, DebateTranscript, JudgeScore
+
+logger = logging.getLogger("ai_debate")
+
+_SCORE_SYSTEM = """You are the objective Judge in an AI vs. Human Teachers debate.
+Score each argument pair using these 5 criteria (total 100 pts per agent):
+  - Logical reasoning depth:   30 pts
+  - Evidence quality:          25 pts
+  - Relevance to topic:        20 pts
+  - Format/schema compliance:  15 pts
+  - Word count adherence:      10 pts
+Respond ONLY with JSON (no markdown):
+{"round":<n>,"ai_teacher_score":<0-100>,"human_teacher_score":<0-100>,"reasoning":"<1 sentence>"}"""
+
+_VERDICT_SYSTEM = """You are the Judge. Declare one winner — ties are NOT permitted.
+If cumulative scores are equal, the agent with higher reasoning-depth criterion wins.
+Respond ONLY with JSON (no markdown):
+{"agent":"Judge","round":10,"role":"judge","argument":null,"round_summary":null,
+ "final_verdict":"<100-200 words: name winner, cite score differential, reference 2 deciding rounds>",
+ "word_count":<n>,"format_valid":true}"""
+
+_INTERIM_SYSTEM = (
+    "You are the debate moderator. After an agent's argument, provide one concise insight "
+    "sentence (max 25 words). Be objective and specific to the argument. Plain text only."
+)
+
+
+class JudgeAgent:
+    _TURN_ORDER = ["AI_Teacher_Agent", "Human_Teacher_Agent"]
+
+    def __init__(self, client: CLIClient, gatekeeper: RateLimiter) -> None:
+        self.client = client
+        self.gatekeeper = gatekeeper
+
+    def next_turn(self, round_num: int) -> str:
+        return self._TURN_ORDER[(round_num - 1) % 2]
+
+    def validate_response(self, turn: AgentTurn) -> bool:
+        from ..config import settings
+        if not turn.format_valid:
+            return False
+        if turn.role == "debater" and not turn.argument:
+            return False
+        if turn.argument:
+            wc = len(turn.argument.split())
+            if not (settings.min_words <= wc <= settings.max_words):
+                logger.warning(f"{turn.agent} round {turn.round}: word count {wc} out of range")
+                return False
+        return True
+
+    def introduce_agent(self, agent_name: str, round_num: int) -> str:
+        label = "AI Teacher" if "AI" in agent_name else "Human Teacher"
+        return f"  [Judge] Round {round_num} -- {label}, please present your argument."
+
+    def interim_feedback(self, agent_name: str, argument: str) -> str:
+        label = "AI Teacher" if "AI" in agent_name else "Human Teacher"
+        self.gatekeeper.acquire()
+        raw = self.client.ask(
+            system=_INTERIM_SYSTEM,
+            user=f'{label} argued: "{argument}"\nYour one-sentence insight:',
+        )
+        return raw.strip() or "Argument noted."
+
+    def transition_to(self, from_agent: str, to_agent: str, feedback: str) -> str:
+        to_label = "AI Teacher" if "AI" in to_agent else "Human Teacher"
+        return f"  [Judge] {feedback} -- Now, {to_label}, your response."
+
+    def score_round(self, ai_turn: AgentTurn, human_turn: AgentTurn) -> JudgeScore:
+        self.gatekeeper.acquire()
+        user = (
+            f"Round {ai_turn.round}\n"
+            f"AI_Teacher_Agent: {ai_turn.argument or '[FORFEITED]'}\n"
+            f"Human_Teacher_Agent: {human_turn.argument or '[FORFEITED]'}\n"
+            "Score both agents now."
+        )
+        raw = self.client.ask(system=_SCORE_SYSTEM, user=user)
+        raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        try:
+            return JudgeScore.model_validate(json.loads(raw))
+        except Exception:
+            ai_pts = 0 if not ai_turn.argument else 50
+            human_pts = 0 if not human_turn.argument else 50
+            return JudgeScore(round=ai_turn.round, ai_teacher_score=ai_pts, human_teacher_score=human_pts, reasoning="Parse error")
+
+    def declare_winner(self, transcript: DebateTranscript) -> str:
+        ai_total = sum(s.ai_teacher_score for s in transcript.scores)
+        human_total = sum(s.human_teacher_score for s in transcript.scores)
+        breakdown = "\n".join(
+            f"Round {s.round}: AI={s.ai_teacher_score} Human={s.human_teacher_score} — {s.reasoning}"
+            for s in transcript.scores
+        )
+        self.gatekeeper.acquire()
+        raw = self.client.ask(
+            system=_VERDICT_SYSTEM,
+            user=(
+                f"AI_Teacher_Agent cumulative: {ai_total}\n"
+                f"Human_Teacher_Agent cumulative: {human_total}\n"
+                f"Breakdown:\n{breakdown}\nDeclare the winner now."
+            ),
+        )
+        raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        try:
+            data = json.loads(raw)
+            turn = AgentTurn.model_validate(data)
+            return turn.final_verdict or f"Winner: {'AI_Teacher_Agent' if ai_total >= human_total else 'Human_Teacher_Agent'}"
+        except Exception:
+            winner = "AI_Teacher_Agent" if ai_total >= human_total else "Human_Teacher_Agent"
+            return f"{winner} wins — {max(ai_total, human_total)} vs {min(ai_total, human_total)} points."
