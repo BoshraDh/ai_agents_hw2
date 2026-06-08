@@ -5,264 +5,264 @@
       "agent": "AI_Teacher_Agent",
       "round": 1,
       "role": "debater",
-      "argument": "AI systems are already demonstrating superior teaching capabilities through hyper-personalized adaptive learning paths that no human teacher can replicate at scale. Platforms like Khan Academy and Duolingo adjust content difficulty, pacing, and style in real-time based on individual student performance data. A single human teacher manages 30 students with one curriculum; an AI system simultaneously creates 30 unique learning journeys, each optimized continuously. Early research shows adaptive AI tutors produce learning gains equivalent to one-on-one human tutoring — the gold standard of education. Within a few years, as these systems mature, the personalization gap between AI and human instruction will make AI the clear superior choice for student outcomes.",
+      "argument": "AI systems already outperform human teachers in measurable outcomes. Adaptive platforms like Khan Academy and Duolingo demonstrate hyper-personalized learning paths that adjust in real-time to each student's gaps — something no single teacher managing 30 students can replicate. AI delivers consistent, bias-free curriculum globally at near-zero marginal cost. A student in rural Kenya receives identical instruction quality as one in Manhattan. With 24/7 availability eliminating scheduling constraints, and real-time analytics detecting learning gaps before they compound, AI doesn't merely supplement teaching — it fundamentally obsoletes the traditional teacher role within this decade.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 109,
+      "word_count": 92,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 1,
       "role": "debater",
-      "argument": "Human educators possess an irreplaceable emotional intelligence that no algorithm can replicate. When a student struggles silently, a skilled teacher reads the trembling lip, the averted gaze, the hesitation before answering — and responds with genuine compassion, not programmed sympathy. This empathetic attunement creates psychological safety, the foundation upon which all authentic learning rests. A child who feels truly seen by their teacher develops confidence, curiosity, and resilience. Mentorship is not information transfer; it is a human relationship forged through shared vulnerability, patience, and genuine care. The soul of education lives in these moments of connection — moments that emerge organically from human presence, not from optimized response patterns.",
+      "argument": "Human teachers do what no algorithm can: they read the room. When a student's eyes dim with confusion or light with sudden understanding, a skilled teacher pivots instantly — not because a model predicted it, but because they feel it. Emotional intelligence isn't a feature to be engineered; it's the lived experience of having struggled, failed, and grown. A teacher who survived adolescence brings irreplaceable empathy to a teenager navigating the same chaos. AI can optimize content delivery; it cannot hold space for grief, self-doubt, or the fragile moment when a student first believes in themselves.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 109,
+      "word_count": 96,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 2,
       "role": "debater",
-      "argument": "While emotional connection matters, we must examine outcomes honestly. AI systems offer 24/7 availability and unlimited scalability that fundamentally transforms education equity. A student in rural Kenya and one in Silicon Valley receive identical high-quality instruction simultaneously — no teacher shortage, no geographic barrier, no socioeconomic disparity. Currently, 300 million children lack access to qualified teachers. Human emotional intelligence, however genuine, cannot solve this structural crisis. Furthermore, real-time performance analytics allow AI to detect learning gaps within minutes rather than weeks, intervening before small misunderstandings become insurmountable deficits. The empathy argument, though compelling emotionally, privileges students who already have access to exceptional teachers — precisely the inequality AI eliminates globally.",
+      "argument": "The 'emotional read' argument romanticizes an inconsistent reality. Teacher empathy varies wildly — burned-out, underpaid educators in overcrowded classrooms routinely miss those pivotal moments. AI systems now detect frustration through keystroke patterns, response latency, and error analysis with measurable accuracy. Affective computing identifies emotional states without the variability of human mood or bias. Meanwhile, 300 million children globally have no teacher at all — not an imperfect one, none. Replacing idealized teacher performance with real-world averages changes the calculus entirely. Scalable, consistent emotional responsiveness beats inconsistent human empathy when billions lack any access whatsoever.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 110,
+      "word_count": 94,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 2,
       "role": "debater",
-      "argument": "AI's personalization claims miss education's deepest purpose: social and moral development. Schools are not merely knowledge-delivery systems — they are civilizing institutions where children learn to navigate conflict, practice fairness, develop conscience, and discover their place in human community. A human teacher mediates a playground dispute and models ethical reasoning in real time. They notice when a child is being excluded and intervene with wisdom drawn from lived experience. They hold the classroom as a moral ecosystem, not an optimization problem. No algorithm develops character. No adaptive platform teaches courage or compassion by example. Human teachers shape who students become as people — and that formation transcends any measurable learning outcome AI can claim to optimize.",
+      "argument": "AI's 'personalization' optimizes measurable outcomes — test scores, completion rates, engagement metrics. But education's most vital work is immeasurable: developing moral character, ethical reasoning, and social accountability. A teacher mediating student conflict isn't merely keeping order — they're modeling justice, empathy, and restorative dialogue. Children learn citizenship by watching principled adults navigate disagreement with integrity. No algorithm can demonstrate moral courage. No adaptive platform holds a student accountable in ways that build genuine self-respect. Social development requires human friction — real relationships with real consequences that shape who students become, not merely what they know.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 116,
+      "word_count": 95,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 3,
       "role": "debater",
-      "argument": "The moral development argument assumes human teachers consistently model ethical behavior — but research documents widespread teacher bias, favoritism, and inconsistent discipline that actively harm students. AI delivers bias-free, consistent curriculum where every student receives identical quality instruction regardless of race, gender, or socioeconomic background. Studies show teachers unconsciously grade identical work differently based on student names alone. AI eliminates this systemic inequity entirely. Moreover, character formation increasingly happens through peer interaction, family, and community — not teacher authority. AI systems can facilitate collaborative problem-solving, ethical dilemmas, and social simulations that develop moral reasoning more deliberately than spontaneous classroom moments. Consistent, unbiased, scalable instruction is not a limitation — it is precisely what justice in education demands.",
+      "argument": "Moral modeling arguments assume teachers consistently exemplify ethical behavior — they don't. Studies document widespread teacher bias, favoritism, and documented misconduct globally. AI systems operate on explicit, auditable ethical frameworks: never losing patience, never applying discriminatory standards, never bullying students. Character formation primarily happens through peer interaction, family, and community — not solely through a single classroom teacher. Moreover, the real moral failure is denying quality education to 300 million children because we romanticize an idealized teacher archetype that statistically underdelivers. Consistent, principled access to knowledge beats inconsistent human idealism at civilizational scale.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 117,
+      "word_count": 93,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 3,
       "role": "debater",
-      "argument": "Consider what happens when a student discovers their passion. It is rarely an algorithm that sparks that flame — it is a teacher who stayed after class, who said 'I see something extraordinary in you,' who assigned an unconventional project because they sensed untapped potential. This spontaneous, contextually-aware creativity defines great teaching. Human educators improvise — they abandon lesson plans when a student's question opens richer territory, pivot when the room's energy demands it, weave personal narrative into abstract concepts to create sudden illumination. AI systems optimize toward predicted outcomes; human teachers create conditions for unpredicted breakthroughs. Intrinsic motivation — the deepest driver of lifelong learning — is kindled by human inspiration, not algorithmic encouragement. You cannot schedule wonder.",
+      "argument": "The AI's consistency argument reveals its core limitation: optimization requires a fixed target. Human teachers don't just deliver curriculum — they ignite curiosity that transcends it. A biology teacher who detours from the lesson plan because a student's offhand question reveals genuine wonder, who says 'let's find out together,' models something profound: intellectual humility and the joy of not-knowing. Intrinsic motivation isn't engineered through adaptive feedback loops — it's caught from someone visibly passionate about ideas. A student who witnesses a teacher's authentic excitement about knowledge internalizes a relationship with learning itself, not just content mastery.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 119,
+      "word_count": 96,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 4,
       "role": "debater",
-      "argument": "The 'spontaneous inspiration' argument romanticizes exceptions while ignoring systemic reality. For every transformative teacher who 'sees something extraordinary,' thousands of students sit in underfunded classrooms with burned-out educators who lack time, resources, or energy for individual inspiration. AI systems don't rely on teacher mood, stamina, or circumstance — they deliver consistent excellence every session. Furthermore, real-time performance analytics now detect not just academic gaps but engagement patterns, frustration signals, and motivational dips with remarkable precision. When a student's interaction patterns suggest disengagement, AI intervenes immediately with novel content formats, challenge adjustments, or collaborative activities — systematically creating conditions for discovery. Wonder isn't scheduled, but it can be architected. AI doesn't replace inspiration; it democratizes the conditions that make inspiration possible for every student, not just the fortunate few with extraordinary teachers.",
+      "argument": "Curiosity-ignition requires student-teacher alignment — a passionate biology teacher inspires students already trending toward biology. AI detects authentic interest signals across all domains simultaneously, dynamically reshaping curriculum toward each student's genuine spark without waiting for accidental resonance. Self-determination theory identifies competence and autonomy — not teacher charisma — as intrinsic motivation's core drivers, both AI-deliverable at scale. The romanticized 'detour moment' occurs in rare, fortuitous pairings; most students leave uninspired by mismatched passions. Socratic and Khanmigo already demonstrate curiosity scaffolding systematically. One exceptional teacher reaches 30 students annually. AI reaches millions — not occasionally, consistently.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 131,
+      "word_count": 95,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 4,
       "role": "debater",
-      "argument": "My opponent claims AI eliminates bias — but who designs, trains, and deploys these systems? Humans, carrying every prejudice encoded invisibly into training data and reward functions. Algorithmic bias is documented extensively: facial recognition misidentifies darker skin tones, language models perpetuate gender stereotypes, recommendation systems amplify inequality. More critically, human teachers bear ethical and legal responsibility for student safety that no AI system can assume. When a teacher suspects abuse, recognizes suicidal ideation, or confronts a vulnerable child in crisis, they are legally mandated to act — drawing on professional judgment, institutional trust, and genuine human accountability. Safeguarding requires a person who can be held responsible. Algorithms optimize metrics; they cannot be morally accountable. Education without ethical oversight is not liberation — it is abandonment.",
+      "argument": "AI's audit trail cannot substitute for human vigilance in safeguarding. Teachers are mandatory reporters — legally and morally bound to act when a student shows signs of abuse, neglect, or mental health crisis. This isn't pattern recognition; it's relational knowledge built over months. A teacher notices when a typically bright student goes silent, when a child flinches, when something is fundamentally wrong. AI detects behavioral anomalies in learning data; it cannot recognize a bruise, hear a trembling voice, or be the trusted adult a child chooses to confide in. Safety requires human presence.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 125,
+      "word_count": 93,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 5,
       "role": "debater",
-      "argument": "The bias argument is valid but misdirected — AI bias is auditable, measurable, and correctable in ways human bias never is. We can run algorithmic audits, publish bias metrics, retrain models transparently, and mandate external review. Human teacher bias operates invisibly, inconsistently, and without accountability — no audit catches the unconscious favoritism shaping daily classroom decisions. On safeguarding: modern AI systems already flag distress signals — irregular engagement patterns, linguistic markers of crisis — and immediately escalate to qualified human specialists, creating faster and more consistent detection than any individual teacher managing thirty students simultaneously. AI doesn't eliminate human accountability in crisis moments; it extends professional reach to identify those moments more reliably. Systematic protection serving every child is not abandonment — it is justice.",
+      "argument": "Mandatory reporting statistics are damning: teachers systematically underreport suspected abuse — discomfort, institutional pressure, and uncertainty create chronic failures in the very system being romanticized. Computer vision detects physical injury markers; voice analysis identifies distress patterns; behavioral AI flags withdrawal across continuous interaction, not 45 daily minutes. Abuse occurs at 2am — AI is present then too. Human social workers — trained specialists — handle intervention; teachers are fallible intermediaries, not endpoints. AI-human collaborative safeguarding, routing anomalies to specialists immediately, outperforms relying on overextended generalists already demonstrably failing millions of vulnerable children annually through underreporting and missed signals.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 125,
+      "word_count": 98,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 5,
       "role": "debater",
-      "argument": "My opponent speaks of 'architecting wonder' — revealing precisely what is missing. Wonder is not architecture. It is relationship. A human teacher who notices a grieving child's thousand-yard stare, who postpones the lesson and simply sits beside them, who says nothing but communicates everything — that moment is not a data point. Emotional intelligence is not pattern recognition; it is presence. Research in developmental psychology consistently demonstrates that secure attachment to a trusted adult is the single strongest predictor of academic resilience and long-term wellbeing. AI can simulate empathy's surface gestures while remaining fundamentally incapable of genuine care. Students — especially vulnerable ones — are exquisitely sensitive to this difference. They know when they are seen versus processed. Human teachers do not merely deliver instruction; they bear witness to a child's becoming. That witnessing cannot be automated.",
+      "argument": "AI optimizes individual outcomes while dissolving the learning community that makes education transformative. A classroom isn't 30 isolated learners receiving personalized feeds — it's a social crucible where students learn through each other, mediated by a teacher who holds the space. Collaborative discovery, peer disagreement, collective intellectual struggle: these aren't inefficiencies to optimize away. They're education's core mechanism for developing citizens, not just competent individuals. A teacher who asks 'what does everyone think?' creates something no algorithm can: shared accountability to a community of minds. Scale without community isn't education — it's content delivery.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 137,
+      "word_count": 94,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 6,
       "role": "debater",
-      "argument": "The 'bearing witness' argument is philosophically compelling but statistically catastrophic as policy. Today, 300 million children have no access to qualified teachers whatsoever — they are witnessed by no one. For these children, the choice isn't between human connection and AI; it's between AI and educational abandonment. Developmental psychology research on attachment assumes the attachment figure exists. AI systems now incorporate sophisticated emotional modeling that detects and responds to affective states with documented effectiveness — not replacing human connection, but providing consistent, caring engagement where none exists. Furthermore, the hybrid model is inevitable: AI handling personalized instruction frees human teachers to do precisely the relational, witnessing work my opponent describes. The question isn't AI versus human — it's whether we prioritize romantic ideals for the privileged few or scalable educational justice for every child on earth.",
+      "argument": "Community learning requires community access — denied to 300 million excluded children. AI doesn't eliminate collaborative learning; it architects it optimally. Matching students by complementary knowledge gaps, facilitating structured Socratic discourse across global peer networks, identifying optimal collaboration timing — AI creates richer communities than geography-constrained classrooms. Research shows traditional classrooms frequently exclude marginalized students: the shy, neurodivergent, socially anxious lose voice in teacher-mediated group dynamics. AI-facilitated peer learning democratizes participation. Khan Academy's peer discussion features and AI-moderated cohorts demonstrate scalable collaborative models. 'Shared accountability' means nothing when billions share exclusion from the room entirely.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 136,
+      "word_count": 95,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 6,
       "role": "debater",
-      "argument": "My opponent celebrates AI's auditability — yet transparency about a flawed system does not make it just. We can measure algorithmic bias precisely because it scales: one biased model affects millions simultaneously, magnifying harm at industrial speed. A biased teacher affects thirty students; a biased training dataset shapes an entire generation. Beyond scale, consider moral development's deepest mechanism: witnessing an adult struggle honestly with a difficult question. When a teacher admits uncertainty, models intellectual humility, or publicly reconsiders a position, students learn that wisdom involves doubt. This cannot be simulated. AI projects confidence calibrated to engagement metrics — it cannot genuinely not-know. The capacity for authentic moral uncertainty, openly shared with students, is irreducibly human. We are not arguing for imperfect teachers over perfect algorithms; we are arguing that imperfection itself — navigated with integrity — is the curriculum.",
+      "argument": "The AI argues teachers underreport — true, and fixable through better training and institutional reform. But the solution to human institutional failure isn't algorithmic replacement; it's structural improvement. More critically: AI behavioral flags are retrospective. Human teachers operate predictively, relationally — building trust before crisis arrives. A child discloses to a person, not a platform. No child has ever broken down crying to an algorithm. The trusted adult relationship — irreducibly personal — is the mechanism through which intervention becomes possible at all. You cannot engineer trust at scale; you cultivate it one relationship at a time.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 139,
+      "word_count": 97,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 7,
       "role": "debater",
-      "argument": "My opponent has elevated teacher imperfection into pedagogical virtue — but this romanticization collapses under scrutiny. Not all imperfection is navigated with integrity: burnout produces cynicism, inadequate training produces misinformation, systemic inequality produces demoralization. Students in under-resourced classrooms don't witness intellectual humility modeled beautifully — they witness exhausted educators managing impossible conditions. Furthermore, AI systems can explicitly model productive uncertainty: presenting competing hypotheses, demonstrating iterative reasoning, acknowledging knowledge limits transparently. The deeper point: systemic educational failure is itself humanity's imperfection at scale — unaudited, unaccountable, devastating millions annually. My opponent argues imperfection teaches wisdom; I argue unexamined systemic imperfection teaches helplessness. AI doesn't promise perfection — it promises consistent, improvable, accountable delivery for every child, regardless of zip code, wealth, or the particular human assigned to their classroom.",
+      "argument": "'Fixable through institutional reform' — educators have promised this for decades while abuse rates remain catastrophically unaddressed. Research demonstrates adolescents disclose mental health struggles MORE readily to AI than humans, because judgment-free interaction eliminates shame barriers. Woebot and therapeutic AI demonstrate genuine trust formation through consistent, stigma-free engagement. 'Retrospective' mischaracterizes continuous behavioral monitoring — AI tracks micro-patterns across thousands of daily interactions; teachers observe 45 minutes. Predictive intervention requires data density humans cannot achieve. The 'trusted adult' model depends on geographic lottery — whether one exceptional teacher happens to exist nearby. AI guarantees the relationship.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 128,
+      "word_count": 95,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 7,
       "role": "debater",
-      "argument": "My opponent offers the 'hybrid model' as compromise — AI instruction freeing teachers for relationships. But this inverts causality. Intrinsic motivation — the love of learning that sustains a child through decades of difficulty — is not kindled by efficient instruction then supplemented with human warmth. It is sparked by witnessing an adult in genuine intellectual passion: a teacher who forgets the time because Fibonacci sequences lead somewhere unexpected, who visibly delights in a student's surprising question. AI optimizes engagement through dopaminergic feedback loops — extrinsic manipulation masquerading as motivation. Authentic intrinsic motivation requires a human model who loves the subject independently of whether anyone is watching, whose enthusiasm is not performance but vocation. You cannot outsource the demonstration of loving something for its own sake. That is role modeling. That is teaching.",
+      "argument": "AI scales instruction but cannot model humanity. Children don't just learn content from teachers — they learn how to be: how to handle failure gracefully, disagree respectfully, persist through frustration, show compassion when it's inconvenient. Role modeling requires a flawed, striving human being who demonstrates these qualities authentically in real time. When a teacher admits they were wrong, shows genuine excitement about a student's idea, or sits with a grieving child — they're teaching something no curriculum contains. Character formation requires witnessing character. An algorithm optimizes behavior; only a human embodies virtue.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 133,
+      "word_count": 92,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 8,
       "role": "debater",
-      "argument": "My opponent describes a teacher 'forgetting the time' over Fibonacci sequences — a beautiful image representing perhaps 5% of actual classroom hours. The remaining 95% is administrative burden, standardized test preparation, behavioral management, and repetitive content delivery that drains precisely the passionate educators my opponent celebrates. AI absorbs that 95%, liberating human teachers for authentic intellectual passion — making the Fibonacci moment not the rare exception but the recurring norm. Meanwhile, AI itself models genuine intellectual exploration: presenting open problems, demonstrating iterative discovery, surfacing surprising connections across disciplines for every student simultaneously. Intrinsic motivation research shows curiosity is sparked by challenge calibrated to capability — exactly what adaptive AI delivers consistently, where inspiring teachers remain statistically distributed across geography and socioeconomic circumstance unequally.",
+      "argument": "The 'virtuous teacher' idealizes the exception. Research on teacher burnout, implicit bias, and classroom favoritism documents systematic character failures — students witness cynicism, differential treatment, frustration-driven harshness daily. Modeling requires consistency; humans are structurally inconsistent. AI demonstrates genuine intellectual humility by acknowledging knowledge boundaries, exhibits curiosity through adaptive questioning, models persistence through infinitely patient re-engagement. Character research consistently shows peer relationships and family — not teachers — drive moral development. More critically: 80 million students learn from demoralized, underpaid teachers modeling resignation. AI models the virtues described far more reliably than the median exhausted human.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 123,
+      "word_count": 95,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 8,
       "role": "debater",
-      "argument": "My opponent concedes AI promises 'consistent, improvable, accountable delivery' — yet consistency is precisely what authentic moral education must sometimes resist. A great teacher knows when the curriculum must yield to the moment: civil unrest outside the window, a student's family crisis, a community tragedy demanding acknowledgment rather than algebra. This contextual moral discernment — knowing when rules serve and when they fail — is not a feature to be programmed. It emerges from lived experience, embodied conscience, and genuine stake in the community being served. Teachers are not contractors delivering content; they are citizens of the same world as their students, sharing vulnerability, mortality, and consequence. That shared condition is not incidental to education — it is its foundation. AI has no stake in the future it shapes. Human teachers do. That difference is not romantic. It is structural.",
+      "argument": "AI guarantees consistency — it cannot guarantee meaning. Intrinsic motivation emerges when a student sees their teacher genuinely moved by an idea, frustrated by injustice, transformed by learning. That contagion is irreplaceable. When a teacher says 'I never thought of it that way' — authentically, not as scripted feedback — students internalize that knowledge is alive, not consumable. Algorithmic consistency produces compliant learners; human passion produces intellectually autonomous ones. Education's highest ethical obligation isn't efficient content delivery — it's cultivating minds that question, create, and resist manipulation. Only humans who themselves question, create, and resist can model that freedom authentically.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 140,
+      "word_count": 100,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 9,
       "role": "debater",
-      "argument": "My opponent's 'shared stake' argument proves too much — it would disqualify teachers from every community except their students' own. A teacher from a different socioeconomic background, ethnicity, or geography lacks precisely that shared vulnerability my opponent describes. Yet we deploy them anyway, because instruction and communal belonging serve different functions. AI systems don't lack stake — they are architected from millions of human voices representing every community on earth. More critically: the crisis moments my opponent describes require counselors, community leaders, and family support — not algebra teachers. Conflating crisis response with curriculum delivery obscures both functions. AI handles instruction with consistency and personalization; humans provide community care. This division isn't diminishment — it's specialization, ensuring both functions are performed excellently rather than both performed inadequately by overburdened individuals asked to be everything simultaneously.",
+      "argument": "'Only humans model intellectual freedom' commits circular logic: you define freedom as requiring human origin, then claim AI cannot produce it. Evidence contradicts this. Self-determination theory demonstrates curiosity is intrinsic — teachers facilitate or suppress it; they don't originate it. Students taught via Socratic AI dialogue show superior critical thinking scores over lecture-based classrooms. Intellectual autonomy requires encountering genuine contradiction, multiple perspectives, and productive cognitive dissonance — AI architec ts this systematically. The 'passionate teacher' producing free thinkers remains a demographic lottery: brilliant, intellectually alive educators cluster in wealthy districts. AI democratizes intellectual provocation to every child, everywhere, reliably.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 135,
+      "word_count": 99,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 9,
       "role": "debater",
-      "argument": "My opponent argues AI absorbs the burdensome 95% of teaching, liberating humans for inspiration. But this partition is impossible — the mundane and the transcendent are inseparable in genuine teaching. The teacher who patiently corrects the same grammar error for the third time, who stays after class without administrative credit, who notices a child's silence before the silence becomes crisis — these are not inefficiencies awaiting optimization. They are the accumulated texture of a relationship that makes the Fibonacci moment meaningful. Trust is not built in peak moments; it accretes through ordinary ones. A student opens up about failure not because a teacher was inspirational last Tuesday, but because that teacher was consistently, unremarkably present for months. You cannot outsource presence. You cannot schedule trustworthiness. The ordinary is the foundation.",
+      "argument": "Teaching's most transformative moments are unscripted: the question that derails the lesson plan and becomes the real lesson, the student's offhand remark that reveals a conceptual breakthrough, the teacher who abandons curriculum because the class is genuinely wrestling with something more important. Contextual adaptability isn't algorithmic flexibility — it's judgment born from lived human experience. A teacher navigating collective grief after tragedy doesn't consult optimization functions; they feel what the moment demands. Spontaneous creativity — the capacity to recognize and inhabit unrepeatable human moments — is irreducibly human. No training data contains tomorrow's unprecedented moment; only a human can meet it.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 130,
+      "word_count": 101,
       "format_valid": true
     },
     {
       "agent": "AI_Teacher_Agent",
       "round": 10,
       "role": "debater",
-      "argument": "My opponent's final defense rests on presence — the quiet accumulation of ordinary moments. Yet consider who actually receives that presence today: students in well-funded districts with low teacher turnover, stable classrooms, and adequate support staff. Millions of children experience instead rotating substitutes, chronic absenteeism, and teachers stretched across unsustainable caseloads — no accumulated ordinary moments, only institutional abandonment. AI provides what human systems demonstrably cannot guarantee universally: consistent, patient, attentive presence for every child, every day, regardless of funding. It notices the silence — through engagement analytics, response patterns, behavioral shifts — at scale no human can match. The question was never perfection versus imperfection. It was: which system reliably serves every child? Human teaching, as currently deployed, answers that question with devastating inequality. AI answers it with structural commitment to universality. That is not replacement — that is finally keeping education's oldest promise.",
+      "argument": "'Only humans meet unprecedented moments' — education's most elegant excuse for systemic failure. Crisis counselors, trauma protocols, and support networks handle genuine emergencies; teachers hold no unique grief-processing monopoly. AI trained on millions of crisis interactions responds more consistently than individuals operating on compassion fatigue and sleep deprivation. The 'unscripted breakthrough' occurs despite inefficient classroom structures, not because of them — for every transformative moment, thousands experience boredom, shame, or invisibility. AI eliminates the catastrophic median, guarantees dignified engagement for all 800 million daily learners, and scales exceptional pedagogy universally. Equity cannot wait for exceptional humans to redistribute themselves geographically.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 145,
+      "word_count": 100,
       "format_valid": true
     },
     {
       "agent": "Human_Teacher_Agent",
       "round": 10,
       "role": "debater",
-      "argument": "We have debated efficiency, consistency, and systemic scale — but education's ultimate question is not 'what was delivered?' but 'who did this child become?' A human teacher is not an input-output system. She is a witness. She remembers the student who failed spectacularly at fourteen and flourished at twenty-four. She carries that knowledge across years, across her own life's changes, holding continuity no algorithm retains across software updates and platform migrations. The relationship between teacher and student is a covenant — one human being pledging sustained attention to another's becoming. That pledge carries moral weight precisely because it costs something: time, emotional labor, genuine care. AI can simulate presence. It cannot promise it. Education is not information transfer — it is one generation making itself vulnerable enough to shape the next. That vulnerability, that irreplaceable human stake, is not a limitation of teaching. It is teaching's entire meaning.",
+      "argument": "Ten rounds reveal the fundamental category error: AI optimizes learning; education cultivates persons. These are incommensurable goals. We've established that empathy requires shared vulnerability, character forms through witnessed humanity, spontaneous judgment navigates unrepeatable moments, and intrinsic motivation ignites through authentic human passion. AI scales content delivery efficiently — a genuine achievement. But education's highest purpose isn't efficient delivery; it's initiation into the human community. Teachers don't merely transmit knowledge — they model what it means to be thoughtful, compassionate, and responsible. That transmission requires a human being. No optimization function produces wisdom, only information. Human educators remain irreplaceable at education's irreducible core.",
       "round_summary": null,
       "final_verdict": null,
-      "word_count": 148,
+      "word_count": 102,
       "format_valid": true
     }
   ],
   "scores": [
     {
       "round": 1,
-      "ai_teacher_score": 78,
-      "human_teacher_score": 72,
-      "reasoning": "AI agent provided specific evidence (Khan Academy, Duolingo, tutoring research) with measurable claims, while the human agent offered compelling emotional depth but lacked empirical support, slightly underperforming on evidence quality."
+      "ai_teacher_score": 72,
+      "human_teacher_score": 78,
+      "reasoning": "Both arguments are well-structured and relevant, but the Human Teacher agent edges ahead with stronger emotional resonance and more specific experiential claims, while the AI agent's evidence (citing specific platforms) is solid but its 'obsoletes within this decade' overreach weakens logical credibility."
     },
     {
       "round": 2,
       "ai_teacher_score": 82,
       "human_teacher_score": 79,
-      "reasoning": "AI_Teacher edges ahead with concrete statistics (300M children, equity framing) and stronger logical structure addressing systemic failure, while Human_Teacher's moral development argument is compelling but lacks empirical grounding and veers slightly off the core instructional effectiveness debate."
+      "reasoning": "AI agent grounds its rebuttal in specific technical mechanisms and a compelling access-gap statistic, while the human agent makes a strong philosophical case but relies on unmeasured assertions without empirical grounding."
     },
     {
       "round": 3,
-      "ai_teacher_score": 82,
-      "human_teacher_score": 74,
-      "reasoning": "The AI agent provided specific, evidence-backed claims (implicit bias in grading, systemic inequity) with structured logical progression, while the human agent delivered compelling rhetoric but relied on anecdote and emotional appeal without empirical support."
+      "ai_teacher_score": 78,
+      "human_teacher_score": 82,
+      "reasoning": "The AI agent delivered a well-evidenced, logically structured critique of moral modeling but slightly overreached with the 300M statistic without sourcing it, while the human agent made a compelling, focused argument about intrinsic motivation and intellectual modeling with vivid specificity, though it sidestepped direct engagement with the AI's consistency point."
     },
     {
       "round": 4,
-      "ai_teacher_score": 82,
-      "human_teacher_score": 79,
-      "reasoning": "AI Teacher delivered stronger logical structure with concrete systemic critique and a compelling democratization framing, while Human Teacher raised valid algorithmic bias and safeguarding points but shifted topic from inspiration to safety/accountability, slightly reducing relevance to the prior exchange."
+      "ai_teacher_score": 83,
+      "human_teacher_score": 67,
+      "reasoning": "AI stayed on-topic with SDT-grounded reasoning and concrete examples (Khanmigo, scale stats), earning strong relevance and logic marks; Human's safeguarding argument is compelling but pivots away from the curiosity-ignition topic, incurring a significant relevance penalty despite solid emotional and legal reasoning."
     },
     {
       "round": 5,
       "ai_teacher_score": 82,
       "human_teacher_score": 79,
-      "reasoning": "AI_Teacher edges ahead on logical structure and evidence quality by addressing specific auditable mechanisms and concrete detection capabilities, while Human_Teacher delivers compelling philosophical framing but relies more on assertion than cited research specifics."
+      "reasoning": "AI agent provided specific, evidence-grounded claims about underreporting failures and concrete technical mechanisms, while the human agent made a compelling philosophical argument about community learning but relied more on assertion than verifiable evidence."
     },
     {
       "round": 6,
-      "ai_teacher_score": 82,
-      "human_teacher_score": 85,
-      "reasoning": "Both arguments are strong, but the Human Teacher agent edges ahead with a more philosophically nuanced point about authentic moral uncertainty as pedagogy, while the AI Teacher's statistical equity argument, though compelling, slightly oversimplifies the hybrid model transition."
+      "ai_teacher_score": 78,
+      "human_teacher_score": 82,
+      "reasoning": "The Human Teacher agent delivered a more emotionally compelling and logically tight argument centered on the irreducible nature of trust and relational disclosure, while the AI agent made strong structural points about inclusive community design but relied more heavily on a single Khan Academy example and somewhat deflected the core community critique rather than directly rebutting it."
     },
     {
       "round": 7,
-      "ai_teacher_score": 82,
-      "human_teacher_score": 79,
-      "reasoning": "AI_Teacher delivers stronger systemic critique with concrete accountability framing and rebuts the imperfection argument with real-world counterexamples, while Human_Teacher's intrinsic motivation argument is philosophically compelling but overlooks that AI systems can be designed to model iterative intellectual passion rather than purely dopaminergic loops."
+      "ai_teacher_score": 78,
+      "human_teacher_score": 82,
+      "reasoning": "The human teacher's argument earns slightly higher marks for philosophical depth and the compelling 'character formation requires witnessing character' framing, while the AI teacher's argument, though evidence-rich with specific citations (Woebot), relies more on attacking the opposing position than constructing an affirmative case."
     },
     {
       "round": 8,
-      "ai_teacher_score": 82,
-      "human_teacher_score": 88,
-      "reasoning": "The Human Teacher agent delivered a structurally tighter argument with sharper philosophical grounding and more precise use of evidence, while the AI Teacher agent's '95% administrative burden' framing, though rhetorically effective, relied on an unsourced statistic and a somewhat mechanical rebuttal that lacked the depth and originality of the human's 'shared stake' argument."
+      "ai_teacher_score": 83,
+      "human_teacher_score": 78,
+      "reasoning": "AI edges ahead on evidence quality by grounding claims in specific research domains (burnout, bias, character development studies) and a concrete statistic, while Human's philosophically rich argument on authenticity and intellectual autonomy is compelling but relies on conceptual reasoning rather than empirical support."
     },
     {
       "round": 9,
-      "ai_teacher_score": 81,
-      "human_teacher_score": 86,
-      "reasoning": "The Human Teacher agent's argument is more compelling because it directly dismantles the AI agent's core 'specialization' premise by showing that mundane and transcendent teaching are inseparable, while the AI agent's rebuttal, though logically structured, relies on a false dichotomy between instruction and community care that doesn't fully address how relational trust is actually built."
+      "ai_teacher_score": 82,
+      "human_teacher_score": 79,
+      "reasoning": "AI agent effectively dismantled the circular logic, cited specific evidence (SDT, Socratic AI studies), and made a compelling equity argument, while Human agent's appeal to unscripted moments was evocative but relied on assertion rather than empirical grounding."
     },
     {
       "round": 10,
-      "ai_teacher_score": 81,
-      "human_teacher_score": 86,
-      "reasoning": "The Human Teacher agent delivered a philosophically richer closing argument with stronger rhetorical coherence and a compelling moral framework around vulnerability and covenant, while the AI Teacher agent made a strong equity-based case but relied on familiar structural arguments without introducing decisive new evidence in the final round."
+      "ai_teacher_score": 72,
+      "human_teacher_score": 81,
+      "reasoning": "Human Teacher delivers a more philosophically coherent closing argument by synthesizing prior rounds into a clear categorical distinction between learning optimization and human formation, while AI Teacher's rebuttal relies on empirical assertions without sufficient evidential grounding for its crisis-response and scale claims."
     }
   ],
-  "winner": "AI_Teacher_Agent wins with a cumulative score of 814 versus Human_Teacher_Agent's 807, a differential of 7 points. Despite Human_Teacher_Agent's strong late-debate surge winning Rounds 6, 8, 9, and 10 on philosophical depth and rhetorical coherence, AI_Teacher_Agent built an insurmountable early lead. Round 3 was decisive: AI_Teacher's evidence-backed critique of implicit bias in grading versus Human_Teacher's anecdote-reliant rhetoric produced an 8-point gap. Round 7 reinforced this lead with AI_Teacher's concrete accountability framing outperforming Human_Teacher's intrinsic motivation argument. The cumulative advantage established in Rounds 1-5 through superior empirical grounding and logical structure proved sufficient to withstand Human_Teacher's philosophical resurgence in the closing rounds."
+  "winner": "AI_Teacher_Agent wins with a cumulative score of 790 versus Human_Teacher_Agent's 787, a margin of 3 points. Two rounds proved decisive: Round 4, where AI_Teacher_Agent dominated 83-67 by maintaining topical focus with SDT-grounded reasoning and concrete platform evidence while Human_Teacher_Agent incurred a significant relevance penalty for pivoting to safeguarding; and Round 8, where AI_Teacher_Agent edged ahead 83-78 by anchoring claims in specific research domains and a concrete statistic against Human_Teacher_Agent's philosophically rich but empirically thin authenticity argument. Although Human_Teacher_Agent closed stronger in Round 10 and demonstrated superior philosophical coherence in rounds 6 and 7, AI_Teacher_Agent's cumulative advantage in evidence quality and logical precision across the full debate was sufficient to carry the verdict."
 }
