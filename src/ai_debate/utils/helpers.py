@@ -14,4 +14,4 @@ def truncate_context(turns: list, max_turns: int) -> list:
 
 
 def format_round_header(round_num: int) -> str:
-    return f"\n── Round {round_num:02d} {'─' * 48}"
+    return f"\n-- Round {round_num:02d} {'-' * 48}"

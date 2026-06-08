@@ -35,7 +35,7 @@ class DebateEngine:
         from ..config import settings
 
         transcript = DebateTranscript(topic=TOPIC)
-        print(f"\n{'=' * 60}\nDEBATE TOPIC: {TOPIC}\n{'=' * 60}")
+        print(f"\n{'=' * 60}\nDEBATE TOPIC:\n{TOPIC}\n{'=' * 60}")
 
         for round_num in range(1, settings.max_rounds + 1):
             print(format_round_header(round_num))
@@ -51,7 +51,7 @@ class DebateEngine:
 
         verdict = self.judge.declare_winner(transcript)
         transcript.winner = verdict
-        print(f"\n{'=' * 60}\nFINAL VERDICT\n{'=' * 60}\n{verdict}\n")
+        print(f"\n{'=' * 60}\nFINAL VERDICT\n{'=' * 60}\n{verdict}\n{'=' * 60}\n")
         self._export_transcript(transcript)
         return transcript
 

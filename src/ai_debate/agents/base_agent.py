@@ -4,15 +4,14 @@ import json
 import logging
 from abc import ABC, abstractmethod
 
-import anthropic
-
+from ..core.cli_client import CLIClient
 from ..models.schemas import AgentTurn
 
 logger = logging.getLogger("ai_debate")
 
 
 class BaseDebateAgent(ABC):
-    def __init__(self, name: str, position: str, client: anthropic.Anthropic) -> None:
+    def __init__(self, name: str, position: str, client: CLIClient) -> None:
         self.name = name
         self.position = position
         self.client = client
@@ -38,8 +37,7 @@ class BaseDebateAgent(ABC):
     def _parse_response(self, raw: str, round_num: int) -> AgentTurn:
         raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
         try:
-            data = json.loads(raw)
-            return AgentTurn.model_validate(data)
+            return AgentTurn.model_validate(json.loads(raw))
         except Exception as exc:
             logger.warning(f"{self.name} round {round_num} parse error: {exc}")
             return AgentTurn(

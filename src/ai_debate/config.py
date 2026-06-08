@@ -2,12 +2,12 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    anthropic_api_key: str
+    anthropic_api_key: str = ""  # unused in CLI mode — kept for .env compatibility
     model: str = "claude-sonnet-4-6"
     max_rounds: int = 10
     min_words: int = 80
     max_words: int = 150
-    rate_limit_rpm: int = 10
+    rate_limit_rpm: int = 30  # higher default for local CLI mode
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -16,4 +16,4 @@ class Settings(BaseSettings):
     )
 
 
-settings = Settings()  # type: ignore[call-arg]
+settings = Settings()

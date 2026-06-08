@@ -3,12 +3,11 @@ from __future__ import annotations
 import logging
 import sys
 
-import anthropic
-
 from .agents.ai_teacher import AITeacherAgent
 from .agents.human_teacher import HumanTeacherAgent
 from .agents.judge import JudgeAgent
 from .config import settings
+from .core.cli_client import CLIClient
 from .core.debate import DebateEngine
 from .core.gatekeeper import RateLimiter
 
@@ -20,7 +19,7 @@ logging.basicConfig(
 
 def main() -> None:
     try:
-        client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+        client = CLIClient()
         gatekeeper = RateLimiter(rpm=settings.rate_limit_rpm)
         ai_agent = AITeacherAgent(client=client)
         human_agent = HumanTeacherAgent(client=client)
@@ -35,8 +34,11 @@ def main() -> None:
     except KeyboardInterrupt:
         print("\nDebate interrupted by user. Exiting.")
         sys.exit(0)
-    except anthropic.APIError as exc:
-        logging.error(f"Anthropic API error: {exc}")
+    except RuntimeError as exc:
+        logging.error(str(exc))
+        sys.exit(1)
+    except Exception as exc:
+        logging.error(f"Unexpected error: {exc}")
         sys.exit(1)
 
 

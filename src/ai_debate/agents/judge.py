@@ -3,9 +3,7 @@ from __future__ import annotations
 import json
 import logging
 
-import anthropic
-from anthropic.types import MessageParam, TextBlock
-
+from ..core.cli_client import CLIClient
 from ..core.gatekeeper import RateLimiter
 from ..models.schemas import AgentTurn, DebateTranscript, JudgeScore
 
@@ -22,7 +20,7 @@ Respond ONLY with JSON (no markdown):
 {"round":<n>,"ai_teacher_score":<0-100>,"human_teacher_score":<0-100>,"reasoning":"<1 sentence>"}"""
 
 _VERDICT_SYSTEM = """You are the Judge. Declare one winner — ties are NOT permitted.
-If cumulative scores are equal, the agent with the higher total reasoning-depth criterion wins.
+If cumulative scores are equal, the agent with higher reasoning-depth criterion wins.
 Respond ONLY with JSON (no markdown):
 {"agent":"Judge","round":10,"role":"judge","argument":null,"round_summary":null,
  "final_verdict":"<100-200 words: name winner, cite score differential, reference 2 deciding rounds>",
@@ -32,7 +30,7 @@ Respond ONLY with JSON (no markdown):
 class JudgeAgent:
     _TURN_ORDER = ["AI_Teacher_Agent", "Human_Teacher_Agent"]
 
-    def __init__(self, client: anthropic.Anthropic, gatekeeper: RateLimiter) -> None:
+    def __init__(self, client: CLIClient, gatekeeper: RateLimiter) -> None:
         self.client = client
         self.gatekeeper = gatekeeper
 
@@ -41,7 +39,6 @@ class JudgeAgent:
 
     def validate_response(self, turn: AgentTurn) -> bool:
         from ..config import settings
-
         if not turn.format_valid:
             return False
         if turn.role == "debater" and not turn.argument:
@@ -49,40 +46,28 @@ class JudgeAgent:
         if turn.argument:
             wc = len(turn.argument.split())
             if not (settings.min_words <= wc <= settings.max_words):
-                logger.warning(
-                    f"{turn.agent} round {turn.round}: word count {wc} outside [{settings.min_words},{settings.max_words}]"
-                )
+                logger.warning(f"{turn.agent} round {turn.round}: word count {wc} out of range")
                 return False
         return True
 
     def score_round(self, ai_turn: AgentTurn, human_turn: AgentTurn) -> JudgeScore:
-        from ..config import settings
-
         self.gatekeeper.acquire()
-        prompt = (
+        user = (
             f"Round {ai_turn.round}\n"
-            f"AI_Teacher_Agent argument: {ai_turn.argument or '[FORFEITED]'}\n"
-            f"Human_Teacher_Agent argument: {human_turn.argument or '[FORFEITED]'}\n"
+            f"AI_Teacher_Agent: {ai_turn.argument or '[FORFEITED]'}\n"
+            f"Human_Teacher_Agent: {human_turn.argument or '[FORFEITED]'}\n"
             "Score both agents now."
         )
-        response = self.client.messages.create(
-            model=settings.model,
-            max_tokens=256,
-            system=_SCORE_SYSTEM,
-            messages=[MessageParam(role="user", content=prompt)],
-        )
-        raw_text = next((b.text for b in response.content if isinstance(b, TextBlock)), "")
-        raw = raw_text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        raw = self.client.ask(system=_SCORE_SYSTEM, user=user)
+        raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
         try:
             return JudgeScore.model_validate(json.loads(raw))
         except Exception:
             ai_pts = 0 if not ai_turn.argument else 50
             human_pts = 0 if not human_turn.argument else 50
-            return JudgeScore(round=ai_turn.round, ai_teacher_score=ai_pts, human_teacher_score=human_pts, reasoning="Parse error — defaults applied")
+            return JudgeScore(round=ai_turn.round, ai_teacher_score=ai_pts, human_teacher_score=human_pts, reasoning="Parse error")
 
     def declare_winner(self, transcript: DebateTranscript) -> str:
-        from ..config import settings
-
         ai_total = sum(s.ai_teacher_score for s in transcript.scores)
         human_total = sum(s.human_teacher_score for s in transcript.scores)
         breakdown = "\n".join(
@@ -90,18 +75,15 @@ class JudgeAgent:
             for s in transcript.scores
         )
         self.gatekeeper.acquire()
-        response = self.client.messages.create(
-            model=settings.model,
-            max_tokens=512,
+        raw = self.client.ask(
             system=_VERDICT_SYSTEM,
-            messages=[MessageParam(role="user", content=(
+            user=(
                 f"AI_Teacher_Agent cumulative: {ai_total}\n"
                 f"Human_Teacher_Agent cumulative: {human_total}\n"
-                f"Per-round breakdown:\n{breakdown}\nDeclare the winner now."
-            ))],
+                f"Breakdown:\n{breakdown}\nDeclare the winner now."
+            ),
         )
-        raw_text2 = next((b.text for b in response.content if isinstance(b, TextBlock)), "")
-        raw = raw_text2.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
         try:
             data = json.loads(raw)
             turn = AgentTurn.model_validate(data)
