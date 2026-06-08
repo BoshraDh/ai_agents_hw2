@@ -18,9 +18,15 @@ Key argument themes to develop across rounds:
 5. Ethical oversight and safeguarding responsibilities
 """
 
+_CONSTRAINTS = (
+    "\nSTRICT WORD LIMIT: 80-120 words. Exceeding 120 words will result in a penalty from the "
+    "Judge Agent. Be direct and concise. Focus on density of information, not length. "
+    "Avoid unnecessary filler phrases."
+)
+
 _JSON_SCHEMA = (
     '{"agent":"Human_Teacher_Agent","round":<n>,"role":"debater",'
-    '"argument":"<your 80-150 word argument>","round_summary":null,'
+    '"argument":"<80-120 words, high density, no filler>","round_summary":null,'
     '"final_verdict":null,"word_count":<n>,"format_valid":true}'
 )
 
@@ -34,7 +40,7 @@ class HumanTeacherAgent(BaseDebateAgent):
         )
 
     def argue(self, round_num: int, context: list[AgentTurn]) -> AgentTurn:
-        system = self._build_system_prompt() + _THEMES + f"\nRespond ONLY with JSON:\n{_JSON_SCHEMA}"
+        system = self._build_system_prompt() + _THEMES + _CONSTRAINTS + f"\nRespond ONLY with JSON:\n{_JSON_SCHEMA}"
         user = self._build_user_message(round_num, context)
 
         for attempt in range(2):

@@ -84,14 +84,16 @@ the topic:
 
 ### 4.2 Word Count Limits
 
-| Agent / Message Type   | Min Words | Max Words |
-|------------------------|-----------|-----------|
-| AI_Teacher_Agent argument  | 80    | 150       |
-| Human_Teacher_Agent argument | 80  | 150       |
-| Judge round summary    | 30        | 60        |
-| Judge final verdict    | 100       | 200       |
+| Agent / Message Type         | Min Words | Max Words |
+|------------------------------|-----------|-----------|
+| AI_Teacher_Agent argument    | 80        | **120**   |
+| Human_Teacher_Agent argument | 80        | **120**   |
+| Judge round summary          | 30        | 60        |
+| Judge final verdict          | 100       | 200       |
 
-Responses outside these bounds are flagged and penalized in scoring.
+Responses outside these bounds are flagged and penalized in scoring.  
+**Exceeding 120 words will result in an explicit scoring penalty from the Judge Agent.**  
+Agents must prioritise density of information over length and avoid filler phrases.
 
 ### 4.3 JSON Communication Protocol
 

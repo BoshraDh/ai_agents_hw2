@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     model: str = "claude-sonnet-4-6"
     max_rounds: int = 10
     min_words: int = 80
-    max_words: int = 150
+    max_words: int = 120
     rate_limit_rpm: int = 30  # higher default for local CLI mode
 
     model_config = SettingsConfigDict(

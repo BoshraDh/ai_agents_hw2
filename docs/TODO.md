@@ -134,3 +134,11 @@
 - [x] `tests/test_debate.py` — full 2-round smoke test with mocked agents
 - [x] Run `pytest --tb=short` — all tests green
 - [x] Run `ruff check src/` and `mypy src/` — zero errors
+
+---
+
+## 12. v1.1 Quality & Display Improvements
+
+- [x] Modify Agent System Prompts — reduce `max_words` to 120, add explicit Judge penalty warning, add density-over-length instruction to `AI_Teacher_Agent` and `Human_Teacher_Agent`
+- [x] Refactor Controller Logging — replace `[:100]` truncation in `core/debate.py` with `textwrap.fill()` (width=100) via new `_print_turn()` helper so no argument text is cut off
+- [ ] Test Terminal Display — run `uv run debate` from a standalone terminal and confirm all 10 rounds print full wrapped text with no truncation or Unicode errors

@@ -145,6 +145,23 @@ Word-count range enforced via `@field_validator`; one automatic retry allowed.
 
 ---
 
+## 5. System Prompt & Display Refactor (v1.1)
+
+### 5.1 Agent Word-Count Tightening
+- `config.py`: `max_words` reduced from 150 → **120**
+- Both agent system prompts updated with explicit penalty warning:
+  `"Exceeding 120 words will result in a penalty from the Judge Agent."`
+- Instruction added: *"Be direct and concise. Focus on density of information,
+  not length. Avoid unnecessary filler phrases."*
+- `_JSON_SCHEMA` in each agent updated to reflect 80–120 word constraint
+
+### 5.2 Controller Display Refactor (`core/debate.py`)
+- Replace `[:100]` hard truncation with `textwrap.fill()` (width=100)
+- `_print_turn(label, text)` helper wraps full argument text with consistent
+  indentation — no content is ever cut off in the terminal
+
+---
+
 ## 5. File Line-Count Budget
 
 | File                    | Budget  |

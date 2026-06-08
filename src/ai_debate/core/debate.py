@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import textwrap
 from pathlib import Path
 
 from ..agents.ai_teacher import AITeacherAgent
@@ -72,11 +73,15 @@ class DebateEngine:
             logger.warning(f"Round {round_num}: Human_Teacher_Agent response forfeited")
             human_turn.format_valid = False
 
-        ai_preview = (ai_turn.argument or "[FORFEITED]")[:100]
-        human_preview = (human_turn.argument or "[FORFEITED]")[:100]
-        print(f"  AI    : {ai_preview}...")
-        print(f"  Human : {human_preview}...")
+        self._print_turn("AI   ", ai_turn.argument)
+        self._print_turn("Human", human_turn.argument)
         return ai_turn, human_turn
+
+    def _print_turn(self, label: str, text: str | None) -> None:
+        content = text or "[FORFEITED]"
+        prefix = f"  {label}: "
+        indent = " " * len(prefix)
+        print(textwrap.fill(content, width=100, initial_indent=prefix, subsequent_indent=indent))
 
     def _log_round(
         self, round_num: int, ai_turn: AgentTurn, human_turn: AgentTurn, score: JudgeScore
@@ -108,5 +113,5 @@ class DebateEngine:
         logs_dir.mkdir(exist_ok=True)
         full_log = logs_dir / "debate_transcript.json"
         full_log.write_text(transcript.model_dump_json(indent=2), encoding="utf-8")
-        print(f"Transcript → {out_file.resolve()}")
-        print(f"Full log   → {full_log.resolve()}")
+        print(f"Transcript -> {out_file.resolve()}")
+        print(f"Full log   -> {full_log.resolve()}")
